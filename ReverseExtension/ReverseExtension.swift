@@ -157,7 +157,7 @@ extension UITableView {
         //MARK: - UITableView configuration
         private func configureTableView(_ tableView: UITableView) {
             if tableView.transform == CGAffineTransform.identity {
-                tableView.transform = CGAffineTransform.identity.rotated(by: .pi)
+                tableView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
             }
             contentInsetObserver?.didChange = { [weak self] _ in
                 DispatchQueue.main.async {
@@ -183,7 +183,6 @@ extension UITableView {
             let scrollIndicatorInsets = base.scrollIndicatorInsets
             base.scrollIndicatorInsets.bottom = scrollIndicatorInsets.top
             base.scrollIndicatorInsets.top = scrollIndicatorInsets.bottom
-            base.scrollIndicatorInsets.right = base.bounds.size.width - 8
             self.lastScrollIndicatorInsets = base.scrollIndicatorInsets
         }
         
@@ -193,7 +192,7 @@ extension UITableView {
                 if view.transform == CGAffineTransform.identity {
                     DispatchQueue.main.async {
                         //UIView.setAnimationsEnabled(false)
-                        view.transform = CGAffineTransform.identity.rotated(by: .pi)
+                        view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
                         //UIView.setAnimationsEnabled(true)
                     }
                 }
@@ -374,7 +373,7 @@ extension UITableView.ReverseExtension: UITableViewDelegate {
         cell.frameObserver = frameObserver
         if cell.contentView.transform == CGAffineTransform.identity {
             UIView.setAnimationsEnabled(false)
-            cell.contentView.transform = CGAffineTransform.identity.rotated(by: .pi)
+            cell.contentView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
             UIView.setAnimationsEnabled(true)
         }
     }
@@ -382,7 +381,7 @@ extension UITableView.ReverseExtension: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if view.transform == CGAffineTransform.identity {
             UIView.setAnimationsEnabled(false)
-            view.transform = CGAffineTransform.identity.rotated(by: .pi)
+            view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
             UIView.setAnimationsEnabled(true)
         }
     }
@@ -390,7 +389,7 @@ extension UITableView.ReverseExtension: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if view.transform == CGAffineTransform.identity {
             UIView.setAnimationsEnabled(false)
-            view.transform = CGAffineTransform.identity.rotated(by: .pi)
+            view.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
             UIView.setAnimationsEnabled(true)
         }
     }
