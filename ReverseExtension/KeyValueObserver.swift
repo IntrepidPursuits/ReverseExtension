@@ -25,13 +25,15 @@ final class KeyValueObserver: NSObject {
         try? ExceptionHandler.catchException {
             target?.removeObserver(self, forKeyPath: keyPath)
         }
+        didChange = nil
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let didChange = didChange else { return }
         switch keyPath {
         case (self.keyPath)?:
-            DispatchQueue.global().async { [weak self] in
-                self?.didChange?(object, change)
+            DispatchQueue.global().async {
+                didChange(object, change)
             }
         default:
             break
