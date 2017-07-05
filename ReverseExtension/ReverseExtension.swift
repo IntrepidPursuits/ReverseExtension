@@ -139,7 +139,7 @@ extension UITableView {
         private var mutex = pthread_mutex_t()
         fileprivate lazy var contentInsetObserver: KeyValueObserver? = {
             guard let base = self.base else { return nil }
-            return KeyValueObserver(tareget: base, forKeyPath: #keyPath(UITableView.contentInset))
+            return KeyValueObserver(target: base, forKeyPath: #keyPath(UITableView.contentInset))
         }()
         
         deinit {
@@ -357,7 +357,7 @@ extension UITableView.ReverseExtension: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let frameObserver = KeyValueObserver(tareget: cell, forKeyPath: #keyPath(UITableView.frame))
+        let frameObserver = KeyValueObserver(target: cell, forKeyPath: #keyPath(UITableView.frame))
         frameObserver.didChange = { [weak self] object, change in
             guard let change = change else { return }
             DispatchQueue.global().async {

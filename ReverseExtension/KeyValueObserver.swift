@@ -9,21 +9,21 @@
 import Foundation
 
 final class KeyValueObserver: NSObject {
-    private weak var tareget: NSObject?
+    private weak var target: NSObject?
     private let keyPath: String
     
     var didChange: ((Any?, [NSKeyValueChangeKey : Any]?) -> ())?
     
-    init(tareget: NSObject, forKeyPath keyPath: String) {
+    init(target: NSObject, forKeyPath keyPath: String) {
         self.keyPath = keyPath
-        self.tareget = tareget
+        self.target = target
         super.init()
-        tareget.addObserver(self, forKeyPath: keyPath, options: [.new, .old], context: nil)
+        target.addObserver(self, forKeyPath: keyPath, options: [.new, .old], context: nil)
     }
     
     deinit {
         try? ExceptionHandler.catchException {
-            tareget?.removeObserver(self, forKeyPath: keyPath)
+            target?.removeObserver(self, forKeyPath: keyPath)
         }
     }
     
