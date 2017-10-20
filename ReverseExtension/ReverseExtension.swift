@@ -159,7 +159,7 @@ extension UITableView {
             if tableView.transform == CGAffineTransform.identity {
                 tableView.transform = CGAffineTransform.identity.scaledBy(x: 1.0, y: -1.0)
             }
-            contentInsetObserver?.didChange = { [weak self] _ in
+            contentInsetObserver?.didChange = { [weak self] _, _ in
                 DispatchQueue.main.async {
                     self?.configureTableViewInsets()
                 }
